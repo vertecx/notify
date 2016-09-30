@@ -95,8 +95,17 @@ namespace Petr.Notify
 			// Hook up event handlers and display the notification.
 			ni.BalloonTipClicked += OnBalloonTipClicked;
 			ni.BalloonTipClosed += OnBalloonTipClosed;
+
 			ni.Visible = true;
 			ni.ShowBalloonTip(DisplayTime);
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			// Hiding the icon before exiting prevents "dead" icons that disappear once moused over in the notification area.
+			ni.Visible = false;
+
+			base.Dispose(disposing);
 		}
 
 		private void OnBalloonTipClicked(object sender, EventArgs e)
@@ -142,22 +151,11 @@ namespace Petr.Notify
 				}
 			}
 
-			Exit();
+			Application.Exit();
 		}
 
 		private void OnBalloonTipClosed(object sender, EventArgs e)
 		{
-			Exit();
-		}
-
-		/// <summary>
-		/// Cleans up and exits the program.
-		/// </summary>
-		private void Exit()
-		{
-			// Hiding the icon before exiting prevents "dead" icons that disappear once moused over in the notification area.
-			ni.Visible = false;
-
 			Application.Exit();
 		}
 
