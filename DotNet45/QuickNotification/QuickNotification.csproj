@@ -52,8 +52,8 @@
     <Compile Include="..\..\NativeMethods.cs">
       <Link>NativeMethods.cs</Link>
     </Compile>
-    <Compile Include="..\..\NotificationContext.cs">
-      <Link>NotificationContext.cs</Link>
+    <Compile Include="..\..\QuickContext.cs">
+      <Link>QuickContext.cs</Link>
     </Compile>
     <Compile Include="..\..\QuickProgram.cs">
       <Link>QuickProgram.cs</Link>
