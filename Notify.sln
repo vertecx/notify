@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B8E7F7FF-FCEE-44F6-BC32-E30C98F32A50}"
 	ProjectSection(SolutionItems) = preProject
 		Localization.cs = Localization.cs
+		NativeMethods.cs = NativeMethods.cs
 		NotificationContext.cs = NotificationContext.cs
 		Notify.ico = Notify.ico
 		Program.cs = Program.cs

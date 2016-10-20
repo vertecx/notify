@@ -104,6 +104,7 @@ namespace Petr.Notify
 		{
 			// Hiding the icon before exiting prevents "dead" icons that disappear once moused over in the notification area.
 			ni.Visible = false;
+			ni.Dispose();
 
 			base.Dispose(disposing);
 		}
@@ -137,17 +138,18 @@ namespace Petr.Notify
 						}
 					}
 
-					Process.Start(filename, arguments);
+					// For some reason the started process sometimes end up behind all other open windows (Seen on Windows 10). Try to bring it to the front.
+					BrintToFront(Process.Start(filename, arguments));
 				}
 				catch (ArgumentOutOfRangeException)
 				{
 					// Thrown when the run on click argument starts with a quote but has no second quote to split on.
-					MessageBox.Show(Localization.GetString(Strings.ArgumentOutOfRangeExceptionText), Localization.GetString(Strings.ClickedNotificationTitle), MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(Localization.GetString(Strings.ArgumentOutOfRangeExceptionText), Localization.GetString(Strings.ClickedNotificationTitle), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, 0);
 				}
 				catch (Win32Exception ex)
 				{
 					// Thrown by Process.Start if filename isn't found.
-					MessageBox.Show(string.Format(CultureInfo.CurrentCulture, Localization.GetString(Strings.Win32ExceptionText), ex.Message), Localization.GetString(Strings.ClickedNotificationTitle), MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(string.Format(CultureInfo.CurrentCulture, Localization.GetString(Strings.Win32ExceptionText), ex.Message), Localization.GetString(Strings.ClickedNotificationTitle), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, 0);
 				}
 			}
 
@@ -216,6 +218,25 @@ namespace Petr.Notify
 		private static string UnescapeNewline(string text)
 		{
 			return text.Replace(@"\n", Environment.NewLine).Replace("nnnn", Environment.NewLine);
+		}
+
+		/// <summary>
+		/// Tries to bring a process main window to the top and into focus.
+		/// </summary>
+		private static void BrintToFront(Process process)
+		{
+			try
+			{
+				if (!process.HasExited)
+				{
+					process.WaitForInputIdle(1000);
+					NativeMethods.SetForegroundWindow(process.MainWindowHandle);
+				}
+			}
+			catch (InvalidOperationException)
+			{
+				// Most likely the process has no GUI.
+			}
 		}
 	}
 }

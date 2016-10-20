@@ -48,6 +48,9 @@
     <Compile Include="..\..\Localization.cs">
       <Link>Localization.cs</Link>
     </Compile>
+    <Compile Include="..\..\NativeMethods.cs">
+      <Link>NativeMethods.cs</Link>
+    </Compile>
     <Compile Include="..\..\NotificationContext.cs">
       <Link>NotificationContext.cs</Link>
     </Compile>
