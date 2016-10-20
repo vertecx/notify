@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\bin\Debug\DotNet20\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;PERSISTENT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -28,7 +28,7 @@
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\bin\Release\DotNet20\</OutputPath>
-    <DefineConstants>TRACE;PERSISTENT</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -49,9 +49,6 @@
     </Compile>
     <Compile Include="..\..\NativeMethods.cs">
       <Link>NativeMethods.cs</Link>
-    </Compile>
-    <Compile Include="..\..\NotificationContext.cs">
-      <Link>NotificationContext.cs</Link>
     </Compile>
     <Compile Include="..\..\PersistentProgram.cs">
       <Link>PersistentProgram.cs</Link>

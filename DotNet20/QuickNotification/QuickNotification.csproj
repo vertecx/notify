@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Petr.Notify.Program</StartupObject>
+    <StartupObject>Petr.Notify.QuickProgram</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>..\..\Notify.ico</ApplicationIcon>

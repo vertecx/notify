@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Petr.Notify
 {
-	internal class NotificationContext : ApplicationContext
+	internal class QuickContext : ApplicationContext
 	{
 		// The minimum and maximum number of arguments supported.
 		private const int MinNumArgs = 1;
@@ -26,7 +26,7 @@ namespace Petr.Notify
 		private NotifyIcon ni = new NotifyIcon();
 		private string runOnClick = null;
 
-		internal NotificationContext()
+		internal QuickContext()
 		{
 			var args = Environment.GetCommandLineArgs();
 			var numArgs = args.Length - 1;

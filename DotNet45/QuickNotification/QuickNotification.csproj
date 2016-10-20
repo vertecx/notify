@@ -38,7 +38,7 @@
     <ApplicationIcon>..\..\Notify.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Petr.Notify.Program</StartupObject>
+    <StartupObject>Petr.Notify.QuickProgram</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
