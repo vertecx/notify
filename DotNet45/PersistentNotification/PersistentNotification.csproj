@@ -37,7 +37,7 @@
     <ApplicationIcon>..\..\Notify.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Petr.Notify.Program</StartupObject>
+    <StartupObject>Petr.Notify.PersistentProgram</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -54,8 +54,8 @@
     <Compile Include="..\..\NotificationContext.cs">
       <Link>NotificationContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Program.cs">
-      <Link>Program.cs</Link>
+    <Compile Include="..\..\PersistentProgram.cs">
+      <Link>PersistentProgram.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

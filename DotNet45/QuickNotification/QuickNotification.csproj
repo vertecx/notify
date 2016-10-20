@@ -55,8 +55,8 @@
     <Compile Include="..\..\NotificationContext.cs">
       <Link>NotificationContext.cs</Link>
     </Compile>
-    <Compile Include="..\..\Program.cs">
-      <Link>Program.cs</Link>
+    <Compile Include="..\..\QuickProgram.cs">
+      <Link>QuickProgram.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

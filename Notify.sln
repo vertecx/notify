@@ -9,7 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NativeMethods.cs = NativeMethods.cs
 		NotificationContext.cs = NotificationContext.cs
 		Notify.ico = Notify.ico
-		Program.cs = Program.cs
+		PersistentProgram.cs = PersistentProgram.cs
+		QuickProgram.cs = QuickProgram.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickNotification", "DotNet20\QuickNotification\QuickNotification.csproj", "{5F5982A4-0324-4B2E-B0B4-EA4A0A350B8F}"
