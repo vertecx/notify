@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>..\..\Notify.ico</ApplicationIcon>
@@ -40,6 +42,7 @@
     <StartupObject>Petr.Notify.PersistentProgram</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -50,6 +53,10 @@
     </Compile>
     <Compile Include="..\..\NativeMethods.cs">
       <Link>NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\NotifyForm.cs">
+      <Link>NotifyForm.cs</Link>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\..\PersistentProgram.cs">
       <Link>PersistentProgram.cs</Link>

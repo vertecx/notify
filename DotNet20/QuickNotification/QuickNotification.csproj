@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Petr.Notify.QuickProgram</StartupObject>
@@ -50,8 +51,9 @@
     <Compile Include="..\..\NativeMethods.cs">
       <Link>NativeMethods.cs</Link>
     </Compile>
-    <Compile Include="..\..\QuickContext.cs">
-      <Link>QuickContext.cs</Link>
+    <Compile Include="..\..\NotifyForm.cs">
+      <Link>NotifyForm.cs</Link>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\..\QuickProgram.cs">
       <Link>QuickProgram.cs</Link>

@@ -13,7 +13,8 @@ namespace Petr.Notify
 
 	internal static class Localization
 	{
-		private static readonly string[] Default = {
+		private static readonly string[] Default =
+		{
 			"Bad arguments",
 			"Expected {0} to {1} but got {2}.",
 			"Clicked notification",
@@ -21,7 +22,8 @@ namespace Petr.Notify
 			"An error occurred while trying to start the last argument. Error message: {0}"
 		};
 
-		private static readonly string[] Swedish = {
+		private static readonly string[] Swedish =
+		{
 			"Felaktiga argument",
 			"Förväntade {0} till {1} men fick {2}.",
 			"Klickad notifiering",

@@ -8,8 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Localization.cs = Localization.cs
 		NativeMethods.cs = NativeMethods.cs
 		Notify.ico = Notify.ico
+		NotifyForm.cs = NotifyForm.cs
 		PersistentProgram.cs = PersistentProgram.cs
-		QuickContext.cs = QuickContext.cs
 		QuickProgram.cs = QuickProgram.cs
 	EndProjectSection
 EndProject

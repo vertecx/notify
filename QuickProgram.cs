@@ -10,11 +10,7 @@ namespace Petr.Notify
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-
-			using (var nc = new QuickContext())
-			{
-				Application.Run(nc);
-			}
+			Application.Run(new NotifyForm(false));
 		}
 	}
 }
