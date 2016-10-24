@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Persistent Notification")]
 [assembly: AssemblyDescription("Can on Windows 10 be configured to show a notification that has to be manually dismissed.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Petter Jönsson")]
 [assembly: AssemblyProduct("Persistent Notification")]
 [assembly: AssemblyCopyright("Copyright © Petter Jönsson 2016")]
 [assembly: AssemblyTrademark("")]

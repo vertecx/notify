@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Quick Notification")]
 [assembly: AssemblyDescription("Displays a notification icon balloon tip with supplied title, text and icon.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Petter Jönsson")]
 [assembly: AssemblyProduct("Quick Notification")]
 [assembly: AssemblyCopyright("Copyright © Petter Jönsson 2016")]
 [assembly: AssemblyTrademark("")]
