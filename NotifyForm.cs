@@ -247,7 +247,7 @@ namespace Petr.Notify
 		{
 			try
 			{
-				if (!process.HasExited)
+				if (process != null && !process.HasExited)
 				{
 					process.WaitForInputIdle(1000);
 					NativeMethods.SetForegroundWindow(process.MainWindowHandle);
