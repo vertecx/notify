@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Petr.Notify
@@ -28,6 +29,7 @@ namespace Petr.Notify
 		private bool persistent;
 		private IContainer components;
 		private NotifyIcon ni;
+		private ManualResetEvent mre;
 
 		internal NotifyForm(bool persistent)
 		{
@@ -50,6 +52,8 @@ namespace Petr.Notify
 			if (persistent)
 			{
 				ni.Click += Ni_Click;
+
+				mre = new ManualResetEvent(true);
 			}
 
 			// Making the form invisisble is completed in the Shown event.
@@ -63,12 +67,23 @@ namespace Petr.Notify
 
 		internal void DisplayNotification(IEnumerable<string> arguments)
 		{
+			// arguments is string[] when called from NotifyForm_Shown and ReadOnlyCollection<string> when
+			// called from SingleInstanceController_StartupNextInstance. Normalize to a list of strings.
 			var args = new List<string>(arguments);
 			var numArgs = args.Count - 1;
 
-			ni.BalloonTipTitle = string.Empty;
-			ni.BalloonTipIcon = ToolTipIcon.None;
-			ni.Tag = string.Empty;
+			if (persistent)
+			{
+				// Wait for previous notification to be closed or clicked before showing a new notification.
+				// This prevents notifications received in quick succession from overwriting each other.
+				mre.WaitOne();
+				mre.Reset();
+
+				// Reset properties that might not get filled by the new notification.
+				ni.BalloonTipTitle = string.Empty;
+				ni.BalloonTipIcon = ToolTipIcon.None;
+				ni.Tag = string.Empty;
+			}
 
 			// The first argument, args[0], is always the name of the executable. It is of no use to this program.
 			// The second argument, args[1], is the first passed by the user.
@@ -136,7 +151,15 @@ namespace Petr.Notify
 		{
 			if (disposing)
 			{
-				components.Dispose();
+				if (mre != null)
+				{
+					mre.Close();
+				}
+
+				if (components != null)
+				{
+					components.Dispose();
+				}
 			}
 
 			base.Dispose(disposing);
@@ -282,7 +305,12 @@ namespace Petr.Notify
 				}
 			}
 
-			if (!persistent)
+			if (persistent)
+			{
+				// Allow next notification to be shown.
+				mre.Set();
+			}
+			else
 			{
 				Application.Exit();
 			}
@@ -290,7 +318,12 @@ namespace Petr.Notify
 
 		private void Ni_BalloonTipClosed(object sender, EventArgs e)
 		{
-			if (!persistent)
+			if (persistent)
+			{
+				// Allow next notification to be shown.
+				mre.Set();
+			}
+			else
 			{
 				Application.Exit();
 			}
