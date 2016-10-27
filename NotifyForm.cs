@@ -74,6 +74,12 @@ namespace Petr.Notify
 
 			if (persistent)
 			{
+				// If there is one argument and it is /autostart, don't display anything.
+				if (numArgs == 1 && args[1].Equals("/autostart", StringComparison.OrdinalIgnoreCase))
+				{
+					return;
+				}
+
 				// Wait for previous notification to be closed or clicked before showing a new notification.
 				// This prevents notifications received in quick succession from overwriting each other.
 				mre.WaitOne();
