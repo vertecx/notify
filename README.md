@@ -11,9 +11,12 @@ Precompiled binaries can be downloaded from [Releases](https://github.com/vertec
 > \* Balloon to toast conversion on Windows 10 can be disabled by the "Disable showing balloon notifications as toasts" group policy.   
 
 # Syntax
-`QuickNotification.exe [title] text [icon] [launch]`
+```
+QuickNotification.exe [title] text [icon] [launch]
 
-> The syntax for PersistentNotification.exe is identical.
+PersistentNotification.exe /autostart
+PersistentNotification.exe [title] text [icon] [launch]
+```
 
 # Arguments
 **title**: Optional. Enclose in quotes if the title contains spaces.
@@ -24,8 +27,10 @@ Precompiled binaries can be downloaded from [Releases](https://github.com/vertec
 
 **launch**: Optional. Path to launch if the notification is clicked. Enclose in quotes if the text contains spaces. Surround the executable path with single quotes if it contains spaces. Escaping other quotes as `\"` seems to be compatible with most software.
 
+**/autostart**: Must occur alone. Causes PersistentNotification to start without showing any notification.
+
 # Examples
-````
+```
 # A notification displaying only Hello:
 QuickNotification.exe Hello
 
@@ -40,23 +45,41 @@ QuickNotification.exe Backup "Backup job failed!\n3 files could not be copied." 
 
 # Launch a program with spaces in the path:
 QuickNotification.exe Space! "Click to launch..." "'C:\Program Files\Windows NT\Accessories\wordpad.exe' \"C:\Log Files\Space Log.txt\""
-````
+```
 
 # Persistent notifications in Windows 10
 Notify consists of two binaries, QuickNotification.exe and PersistentNotification.exe.
-On operating systems prior to Windows 10 version 1511 (November Update) they have the same behavior.
-On Windows 10 version 1511 and later, PersistentNotification.exe can be configured to show the notifications in Action Center until manually dismissed.
+PersistentNotification.exe differs from QuickNotification.exe in that it is a single instance application that doesn't terminate after showing a notification.
+Subsequent calls to PersistentNotification.exe causes notifications to be shown by the already running instance.
+
+PersistentNotification.exe is mainly intended to be used on Windows 10 version 1511 or later, where it can be configured to show notifications that remain in Action Center until manually dismissed.
 This can be useful for notifications you don't want to miss like backup results.
 
-For this to work, the application must misbehave by not running the Windows message loop.
-A side effect of this is that it is no longer possible to detect if the notification was clicked and to launch the last argument.
+Configuring PersistentNotification.exe to show notification in Action Center comes with a few side effects.
+Once the toast has closed and the notification is only shown in Action Center, clicking it no longer launches the configured application.
 Another side effect is that the text in Action Center changes from white to gray making it slightly harder to read.
 
 ## Configure PersistentNotification.exe
-1. Start PersistentNotification.exe at least once. Double clicking it to show the invalid arguments message is enough.
+1. Start PersistentNotification.exe by double clicking it. The invalid arguments message will be shown.
 2. Open the **Settings** app and click **System** followed by **Notifications & actions**.
 3. Find and click **Persistent Notification** in the list of senders.
 4. Toggle **Show notifications in action center** from off to on.
+
+## Usage in scripts
+As the first instance of PersistentNotification.exe does not terminate, it might block the script that started it.
+This can be resolved either by modifying the script or make Windows auto start the first instance of PersistentNotification.exe.
+
+### Modify script
+In batch files, use the start command to launch PersistentNotification.exe without blocking the script.
+
+Example: `start PersistentNotification.exe Hello World i`
+
+In PowerShell, make sure the -Wait argument is **not** used when calling Start-Process.
+
+### Auto start with Windows
+PersistentNotification.exe supports the /autostart argument which will start the program without showing any notification.
+Specifying the argument is useful when making Windows auto start the first instance of PersistentNotification.exe, 
+either by adding a shortcut to the Startup directory or a string value to one of the registry Run keys.
 
 ## Why not code it proper?
 Implementing PersistentNotification.exe using the Windows 10 Toast API would require a complete rewrite sharing little to no code with the current project.
